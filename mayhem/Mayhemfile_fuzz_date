@@ -1,0 +1,9 @@
+project: savantenvs/rust-coreutils
+target: fuzz_date
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_date/testsuite
+cmds:
+  - cmd: /mayhem/fuzz_date
+    libfuzzer: true
+    dictionary: /mayhem/mayhem/fuzz_date.dict

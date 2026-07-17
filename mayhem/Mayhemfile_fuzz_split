@@ -1,0 +1,8 @@
+project: savantenvs/rust-coreutils
+target: fuzz_split
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_split/testsuite
+cmds:
+  - cmd: /mayhem/fuzz_split
+    libfuzzer: true

@@ -1,0 +1,8 @@
+project: savantenvs/rust-coreutils
+target: fuzz_printf
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_printf/testsuite
+cmds:
+  - cmd: /mayhem/fuzz_printf
+    libfuzzer: true
