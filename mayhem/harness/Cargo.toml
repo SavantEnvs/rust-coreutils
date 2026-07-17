@@ -1,0 +1,35 @@
+[package]
+name = "mayhem-fuzz-seq"
+version = "0.0.0"
+description = "Input-driven fuzz_seq / fuzz_split harnesses for the Mayhem integration"
+edition = "2024"
+rust-version = "1.88.0"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+# Own workspace root: this crate sits inside the coreutils workspace tree but is not a member.
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = true
+
+[dependencies]
+libfuzzer-sys = "0.4.7"
+uufuzz = { path = "../../fuzz/uufuzz" }
+uu_seq = { path = "../../src/uu/seq" }
+uu_split = { path = "../../src/uu/split" }
+
+[[bin]]
+name = "fuzz_seq"
+path = "fuzz_targets/fuzz_seq.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_split"
+path = "fuzz_targets/fuzz_split.rs"
+test = false
+doc = false
