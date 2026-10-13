@@ -1,0 +1,8 @@
+project: savantenvs/rust-coreutils
+target: fuzz_echo-mined-dec633c
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz_echo-mined-dec633c/testsuite
+cmds:
+  - cmd: /mayhem/fuzz_echo
+    libfuzzer: true
