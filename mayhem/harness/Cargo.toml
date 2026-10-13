@@ -1,0 +1,28 @@
+[package]
+name = "mayhem-fuzz-echo"
+version = "0.0.0"
+description = "Input-driven fuzz_echo harness for the Mayhem mining branch"
+edition = "2024"
+rust-version = "1.88.0"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+# Own workspace root: this crate sits inside the coreutils workspace tree but is not a member.
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = true
+
+[dependencies]
+libfuzzer-sys = "0.4.7"
+libc = "0.2"
+uu_echo = { path = "../../src/uu/echo" }
+
+[[bin]]
+name = "fuzz_echo"
+path = "fuzz_targets/fuzz_echo.rs"
+test = false
+doc = false
