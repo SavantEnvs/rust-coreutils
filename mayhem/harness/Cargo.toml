@@ -1,0 +1,29 @@
+[package]
+name = "mayhem-fuzz-split"
+version = "0.0.0"
+description = "Input-driven fuzz_split harness for the Mayhem mining branch"
+edition = "2024"
+rust-version = "1.88.0"
+publish = false
+
+[package.metadata]
+cargo-fuzz = true
+
+# Own workspace root: this crate sits inside the coreutils workspace tree but is not a member.
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = true
+
+[dependencies]
+libfuzzer-sys = "0.4.7"
+libc = "0.2"
+uufuzz = { path = "../../fuzz/uufuzz" }
+uu_split = { path = "../../src/uu/split" }
+
+[[bin]]
+name = "fuzz_split"
+path = "fuzz_targets/fuzz_split.rs"
+test = false
+doc = false
